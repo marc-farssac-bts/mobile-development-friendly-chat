@@ -266,7 +266,14 @@ public class MainActivity extends AppCompatActivity
         mSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Send messages on click.
+                FriendlyMessage friendlyMessage = new
+                        FriendlyMessage(mMessageEditText.getText().toString(),
+                        mUsername,
+                        mPhotoUrl,
+                        null /* no image */);
+                mFirebaseDatabaseReference.child(MESSAGES_CHILD)
+                        .push().setValue(friendlyMessage);
+                mMessageEditText.setText("");
             }
         });
 
